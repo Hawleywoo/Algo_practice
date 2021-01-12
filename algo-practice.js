@@ -63,10 +63,41 @@ function binarySearch(sortedArr, value) {
 // Moves big numbers to the back
 // O of n^2 worst case best case O of n
 
-
+function bubbleSort(arr){
+    let noSwaps;
+    for(let i = arr.length; i > 0 ; i--){
+        noSwaps = true;
+        for(let j = 0; j < i -1; j++){
+            if(arr[j] > arr[j+1]){
+                let temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp
+                noSwaps = false
+            }
+        }
+        if(noSwaps) break;
+    }
+}
 // Selection sort moves through finds a lower number then continues throught o check if there is a smaller number 
 // swap with number on the left if at the end of the loop it is the smallest
 // if number is not the same as lowest swap
 // keep a variable with the smallest number starting with the first number of the array
 // stopping before last number to swap itself and first number
 // Moves small numbers to the front
+
+function selectionSort(arr){
+    for(let i = 0; i < arr.length; i++){
+        let lowest = i
+        for(let j= i+1; j < arr.length; j++){
+            if(arr[j] < arr[lowest]){
+                lowest = j;
+            }
+        }
+        if( i !== lowest){
+            let temp = arr[i]
+            arr[i] = arr[lowest]
+            arr[lowest] = temp
+        }
+    }
+    return arr
+}
