@@ -101,3 +101,104 @@ function selectionSort(arr){
     }
     return arr
 }
+
+
+// Insertion SOrt Builds up the sort by gradually creating a larger half which is always sorted
+// Start by picking a the second element in the array
+// Now compar the second element with the one before
+// continue to the next element and if it is in the incorrect order, iterat through the sorted portion
+// repeat until array is sorted
+// first loop goes until the second condition is met "arr[j] > currentVal" 
+// then is goes backwards
+
+function insertionSort(arr){
+    for(let i = 1; i < arr.length; i++){
+        let currentVal = arr[i];
+        for(var j = i - 1; j >= 0 && arr[j] > currentVal; j--){
+            arr[j+ 1] = arr[j]
+        }
+        arr[j+1] = currentVal
+    }
+    return arr
+}
+
+
+// Merge Sort 
+// split, merge , and sort
+// Expoits arrays of 0 or 1 elements are always sorted
+// works by decompossing an array into smaller arrays of 0 or 1 then building up newly sorted array
+// split until each element is split then merge two arrays and sort and continue
+// 
+
+
+//             [3,5,10,6,11,7,8,9]
+
+//         [3,5,10,6]      [11,7,8,9]
+
+//     [3,5]    [10,6]    [11,7]     [8,9]
+
+// [3]  [5]   [10]  [6]  [11] [7]  [8]  [9]
+
+//     [3,5]    [6,10]    [7,11]     [8,9]
+
+//         [3,5,6,10]         [7,8,9,11]
+
+//             [3,5,6,7,8,9,10,11]
+
+// In order to implement merge sort, its useful to first implement a function responsible 
+// for merginf two sorted arrays
+// given two arrays which are sorted, and consists of all of the elements in the two inputs arrays 
+// this function should run in  O(n + m) space and time should not modify the parameteres passed to its
+
+// Pseudocode
+// the input arrays are individually sorted
+// create an empty Array, take a look at the smallest values in each input Array
+// have two counters while loops 
+// while there are still values we havent looked at 
+// if the value in the first array if smaller than the second  add to new array
+// move onto next value
+// if the value in the first array is larger than the second array push the value in the 
+// second array into our results and move to the next value  in second array
+// once we exhaust one array push the rest of the second array in the results array
+// Uses recursion
+// Break up array into halves until you have one element
+// once you have smaller sorted arrays merge those arrays with other sorted arrays until you are back at the length of the array 
+// O(n log n)
+
+function sort(arr1, arr2){
+    let i = 0;
+    let j = 0;
+    let result = [];
+
+    while(i < arr1.length && j < arr2.length){
+        if(arr1[i] < arr2[j]){
+            result.push(arr1[i])
+            i++
+        }else{
+            result.push(arr2[j])
+            j++
+        }
+    }
+
+    while(i < arr1.length){
+        result.push(arr1[i])
+        i++
+    }
+
+    while(j < arr2.length){
+        result.push(arr2[j])
+        j++
+    }
+
+    return results
+}
+
+function mergeSort(arr){
+    if(arr.length <= 1) return arr;
+
+    let mid = Math.floor(arr.length/2)
+    let left = mergeSort(arr.slice(0, mid))
+    let right = mergeSort(arr.slice(mid))
+
+    return sort(left,right)
+}
