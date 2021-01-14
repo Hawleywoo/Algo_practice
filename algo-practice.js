@@ -250,5 +250,20 @@ function pivot(arr, start=0, end=arr.length+1){
     arr[start] = arr[swapIndx]
     arr[swapIndx] = temp
     return swapIndx
+}
 
+// psuedocode
+// call pivot helper on the array 
+// when the helper returns the recursively call the pivto
+// helper on the subarray to the left of the index
+// and then subarray on the right
+// your base case occurs whn you consider a subarray with less than 2 customElements
+
+function quickSort(arr, left= 0, right = arr.length-1){
+    if(left < right){
+        let pivotIndex = pivot(arr,left, right)
+        quickSort(arr,left,pivotIndex -1)
+        quickSort(arr, pivotIndex +1, right)
+    }
+    return arr 
 }
