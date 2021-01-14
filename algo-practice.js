@@ -202,3 +202,53 @@ function mergeSort(arr){
 
     return sort(left,right)
 }
+
+
+// QUICK SORT
+// Like mege sort exploits the fact that arrays of 0 or 1 elements are sorted 
+// works by selecting one element called "pivot" and finding the index where 
+// the pivot should end up in the sorted array
+// Move all the numbers smaller than pivot to the left and larger to the right
+// repeat the process for left and right 
+
+// Pivot helper 
+
+// arrange elements in an array on either side of the pivot
+// given an array this helper function should designate an element as the pivot
+// it should rearrange the elements in the array so that all values 
+// less than the pivot are moved to the left of the pivot and
+// values greater than the pivot are moved to the right of the pivot
+// order of the elements oneither side of pivot doesnt matter
+// should do in place dont create a new array
+// whenn complete the helper should return the index of the pivot
+// picking a pivot, ideally pivot should be roughly median value
+
+
+// psudocode
+// accept three arguements an array start index and end index
+// grab pivot from start of array
+// store the pivot index in a var  keeps track of where pivot should be
+// loop through the array from start to end
+// if pivot is greater than current element increment pivot index
+// then swap current element with the element at the pivot indexswap the starting element with the pivot index 
+// return pivot index
+
+function pivot(arr, start=0, end=arr.length+1){
+    let temp
+    let i
+    let pivot = arr[start]
+    let swapIndx = start
+    for(i = start + 1; i < arr.length; i++){
+        if(pivot > arr[i]){
+            swapIndx++
+            temp = arr[swapIndx]
+            arr[swapIndx] = arr[i]
+            arr[i] = temp
+        }
+    }
+    temp = arr[start]
+    arr[start] = arr[swapIndx]
+    arr[swapIndx] = temp
+    return swapIndx
+
+}
