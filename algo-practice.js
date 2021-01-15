@@ -259,6 +259,9 @@ function pivot(arr, start=0, end=arr.length+1){
 // and then subarray on the right
 // your base case occurs whn you consider a subarray with less than 2 customElements
 
+
+// start at the median to avoid worst case O of n^2
+
 function quickSort(arr, left= 0, right = arr.length-1){
     if(left < right){
         let pivotIndex = pivot(arr,left, right)
@@ -266,4 +269,53 @@ function quickSort(arr, left= 0, right = arr.length-1){
         quickSort(arr, pivotIndex +1, right)
     }
     return arr 
+}
+
+
+// Radix Sort
+doesnt make comparisons works on number 
+it uses the fact ath information about the size of the number is encoded in the
+number of digits more digits means bigger number
+sort from the number in the ones place then the tens place if no digit it goesin 0
+
+helper function to get digit at a specific postion
+
+
+function getDigit(num,i){
+    return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10;
+}
+
+function digitCount(){
+    if(num === 0) return 1;
+    return Math.floor(Math.log10(Math.abs(num))) + 1;
+}
+
+function mostDigits(){
+    let maxDigits = 0;
+    for(let i = 0 ; i < nums.length; i++){
+        maxDigits = Math.max(maxDigits, digitCount(nums[i]))
+    }
+    return maxDigits
+}
+// nums.reduce((a,c)=>{
+//     return digitCount(c) > a ? digitCount(c) : a;
+// }, 0)
+
+// psuedocode
+// function takes list of numbers figures out how many digits largest number has
+// loop through number of digitseach iteration of the loop create a bucket or empty array for each digit
+// replace existing array with values in our buckets starting at 0 ending in 9
+// return list at the end
+
+function radixSort(nums){
+    let mostDigit = mostDigits(nums)
+    for(let i=0; i < mostDigits; i++){
+        let digitBuckets = Array.from({length: 10}, ()=> [])
+        for(let k = 9 ; k < nums.length; k++){
+            let digit = getDigit(nums[i],k)
+            digitBuckets[digit].push(nums[i])
+        }
+        nums =  [].concat(...digitBuckets)
+    }
+    return nums
 }
