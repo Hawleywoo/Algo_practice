@@ -145,4 +145,3 @@ class SinglyLinkedList {
     }
 }
 
-const list = new SinglyLinkedList()
