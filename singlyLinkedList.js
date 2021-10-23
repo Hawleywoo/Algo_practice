@@ -144,4 +144,3 @@ class SinglyLinkedList {
         return this
     }
 }
-
