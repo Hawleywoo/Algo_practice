@@ -26,3 +26,20 @@ A.I. mini max tree
 Folders in OS directory system
 JSON
 
+
+Big O 
+
+insertion O(log n)
+searching O(log n)
+
+
+TREE TRAVERSAL 
+
+Breadth first search
+Horizontal each row first
+
+Depth first search
+Going down. going to the end of tree then back up
+In order
+Pre order
+Post Order

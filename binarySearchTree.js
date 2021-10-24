@@ -50,9 +50,9 @@ class BinarySearchTree{
     find(value){
         if(this.root === null) return false;
         let current = this.root
-
+        
         while(current){
-            if(current.value === value) return true
+            if(current.value === value) return current
             if(current.value > value){
                 // LEFT
                 current = current.left
@@ -62,6 +62,22 @@ class BinarySearchTree{
             }
         }
         return false
+        
+        // if(this.root === null) return false;
+        // let current = this.root
+        // let found = false
+
+        // while(current && !found){
+        //     if(value < current.value){
+        //         current = current.left
+        //     }else if(value > current.value){
+        //         current = current.right
+        //     }else{
+        //         found = true
+        //     }
+        // }
+        // if(!found) return undefined
+        // return current
     }
 }
 
