@@ -30,8 +30,49 @@ class PriorityQueue{
     }
 
     dequeue(){
+        const minNode = this.values[0]
+        const end = this.values.pop()
+        if(this.values.length > 0){
+            this.values[0] = end
+            this.sinkDown()
+        }
 
+        return minNode
     }
+
+    sinkDown(){
+        let index = 0
+        let length = this.values.length
+        const element = this.values[0]
+
+        while(true){
+            let leftIndex = 2 * index + 1
+            let rightIndex = 2 * index + 2
+            let left, right
+            let swap = null
+
+            if(leftIndex < length){
+                left = this.values[leftIndex]
+
+                if(left.priority < element.priority){
+                    swap = leftIndex
+                }
+            }
+            if(rightIndex < length){
+                right = this.values[rightIndex]
+                // checks left to right and if swapped
+                if((swap === null && right.priority < element.priority) || (swap !== null && right.priority < left.priority)){
+                    swap = rightIndex
+                }
+            }
+
+            if(swap === null) break;
+            this.values[index] = this.values[swap]
+            this.values[swap] = element
+            index = swap
+        }
+    }
+
 }
 
 class Node {
