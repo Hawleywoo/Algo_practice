@@ -9,6 +9,7 @@ class MaxBinaryHeap{
     constructor(){
         this.values= []
     }
+
     insert(value){
         this.values.push(value)
         if(this.values.length === 1) return 
@@ -48,4 +49,55 @@ class MaxBinaryHeap{
     //         index = parentIdx
     //     }
     // }
+
+    // removing from a heap
+    // typically remove from the root
+    //  replace with most recently added
+    // adjust Sink Down
+    extractMax(){
+        const max = this.values[0]
+        const end = this.values.pop()
+        this.values[0] = end
+        this.sinkDown()
+
+
+        return max
+    }
+
+    sinkDown(){
+        let index = 0
+        let length = this.values.length
+        const element = this.values[0]
+
+        while(true){
+            let leftIndex = 2 * index + 1
+            let rightIndex = 2 * index + 2
+            let left, right
+            let swap = null
+
+            if(leftIndex < length){
+                left = this.values[leftIndex]
+
+                if(left > element){
+                    swap = leftIndex
+                }
+            }
+            if(rightIndex < length){
+                right = this.values[rightIndex]
+                // checks left to right and if swapped
+                if((swap === null && right > element) || (swap !== null && right > left)){
+                    swap = rightIndex
+                }
+            }
+
+            if(swap === null) break;
+            this.values[index] = this.values[swap]
+            this.values[swap] = element
+            index = swap
+        }
+    }
+
+    
 }
+
+
